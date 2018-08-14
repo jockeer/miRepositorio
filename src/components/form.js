@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import DatePicker from 'material-ui-pickers/DatePicker'
 import MenuItem from '@material-ui/core/MenuItem'
 
-export default class form extends Component{
+export default class Form extends Component{
     render(){
         const classes = this.props.classes
         return(

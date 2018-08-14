@@ -8,7 +8,7 @@ import 'moment/locale/es'
 
 
 import styles from './styles'
-import form from './components/form'
+import Form from './components/Form'
 
 moment.locale('es')
 
@@ -17,7 +17,7 @@ class App extends Component {
     
     return (
       <MuiPickersUtilsProvider utils={MomentUtils} locale='es' moment={ moment }>
-        <form classes={this.props.classes} />
+        <Form classes={this.props.classes} />
       </MuiPickersUtilsProvider>
     )
   }
