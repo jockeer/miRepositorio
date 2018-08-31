@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.4.2",
-    "material-ui-pickers": "^1.0.0-rc.12",
+    "material-ui-pickers": "^1.0.0-rc.14",
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
