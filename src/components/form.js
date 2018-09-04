@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import TextField from "@material-ui/core/TextField";
 import DatePicker from "material-ui-pickers/DatePicker";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -17,28 +18,33 @@ export default class Form extends Component {
     const { model } = this.props;
     const classes = this.props.classes;
     return (
-      <form className={classes.paperContainer} onSubmit={this.props.handleSubmit}>
+      <ValidatorForm className={classes.paperContainer} onSubmit={this.props.handleSubmit}>
         <Paper className={classes.container}>
           <Typography variant="display1" color="primary">
             Registro de la comunidad
           </Typography>
-          <TextField
+          <TextValidator
             label="nombre"
             value={model.firstName}
             onChange={this.props.handleChange}
             name="firstName"
             fullWidth
             className={classes.textField}
+            validators={['required','isString']}
+            errorMessages={['Ingrese un campo','Ingrese un campo valido']}
+            
           />
-          <TextField
+          <TextValidator
             label="Apellido"
             value={model.LastName}
             onChange={this.props.handleChange}
             name="LastName"
             fullWidth
             className={classes.textField}
+            validators={['required','isString']}
+            errorMessages={['Ingrese un campo','Ingrese un campo valido']}
           />
-          <TextField
+          <TextValidator
             label="Celular"
             value={model.phoneNumber}
             onChange={this.props.handleChange}
@@ -46,8 +52,10 @@ export default class Form extends Component {
             type="number"
             fullWidth
             className={classes.textField}
+            validators={['required','isNumber']}
+            errorMessages={['Ingrese un campo','Ingrese un campo valido']}
           />
-          <TextField
+          <TextValidator
             label="Correo"
             value={model.email}
             onChange={this.props.handleChange}
@@ -55,14 +63,19 @@ export default class Form extends Component {
             type="email"
             fullWidth
             className={classes.textField}
+            validators={['required','isEmail']}
+            errorMessages={['Ingrese un campo','Ingrese un campo valido']}
           />
-          <TextField
+          <TextValidator
             label="Facebook"
             value={model.FacebookId}
             onChange={this.props.handleChange}
             name="FacebookId"
             fullWidth
             className={classes.textField}
+            validators={['required','isString']}
+            errorMessages={['Ingrese un campo','Ingrese un campo valido']}
+            
           />
           <DatePicker
             type="date"
@@ -81,7 +94,7 @@ export default class Form extends Component {
             name="dob"
             value={model.dob}
           />
-          <TextField
+          <TextValidator
             select
             label="Interes"
             name="interest"
@@ -92,19 +105,21 @@ export default class Form extends Component {
             value={model.interest}
             className={classes.textField}
             onChange={this.props.handleChange}
+            validators={['required','isString']}
+            errorMessages={['Ingrese un campo','Ingrese un campo valido']}
           >
             {INTEREST.map(item => (
               <MenuItem key={item.value} value={item.value}>
                 {item.value}
               </MenuItem>
             ))}
-          </TextField>
+          </TextValidator>
 
           <Button variant="contained" color="primary" fullWidth type='submit'>
             Primary
           </Button>
         </Paper>
-      </form>
+      </ValidatorForm>
     );
   }
 }
