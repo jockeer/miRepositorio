@@ -17,88 +17,94 @@ export default class Form extends Component {
     const { model } = this.props;
     const classes = this.props.classes;
     return (
-      <Paper className={classes.container}>
-        <Typography variant="display1" color="primary">
-          Registro de la comunidad
-        </Typography>
-        <TextField
-          label="nombre"
-          value={model.firstName}
-          onChange={this.props.handleChange}
-          name="firstName"
-          fullWidth
-          className={classes.textField}
-        />
-        <TextField
-          label="Apellido"
-          value={model.LastName}
-          onChange={this.props.handleChange}
-          name="LastName"
-          fullWidth
-          className={classes.textField}
-        />
-        <TextField
-          label="Celular"
-          value={model.phoneNumber}
-          onChange={this.props.handleChange}
-          name="phoneNumber"
-          type="number"
-          fullWidth
-          className={classes.textField}
-        />
-        <TextField
-          label="Correo"
-          value={model.email}
-          onChange={this.props.handleChange}
-          name="email"
-          type="email"
-          fullWidth
-          className={classes.textField}
-        />
-        <TextField
-          label="Facebook"
-          value={model.FacebookId}
-          onChange={this.props.handleChange}
-          name="FacebookId"
-          fullWidth
-          className={classes.textField}
-        />
-        <DatePicker
-          type="date"
-          label="Fecha de Nacimiento"
-          fullWidth
-          onChange={(date)=>{
-            console.log(date)
-            const event={
-              target:{
-                name:'dob',
-                value:date.format('YYYY-MM-DD')
-              }
-            }
-            this.props.handleChange(event)
-          }}
-          name='dob'
-          value={model.dob}
-        />
-        <TextField
-          select
-          label="Interes"
-          name="interest"
-          SelectProps={{
-            multiple:true
-          }}
-          fullWidth
-          value={model.interest}
-          className={classes.textField}
-          onChange={this.props.handleChange}
-        >
-        {INTEREST.map(item=>(<MenuItem key={item.value} value={item.value}>{item.value}</MenuItem>))}
-        </TextField>
-          
-        <Button variant="contained" color="primary" fullWidth>
-          Primary
-        </Button>
-      </Paper>
+      <form className={classes.paperContainer} onSubmit={this.props.handleSubmit}>
+        <Paper className={classes.container}>
+          <Typography variant="display1" color="primary">
+            Registro de la comunidad
+          </Typography>
+          <TextField
+            label="nombre"
+            value={model.firstName}
+            onChange={this.props.handleChange}
+            name="firstName"
+            fullWidth
+            className={classes.textField}
+          />
+          <TextField
+            label="Apellido"
+            value={model.LastName}
+            onChange={this.props.handleChange}
+            name="LastName"
+            fullWidth
+            className={classes.textField}
+          />
+          <TextField
+            label="Celular"
+            value={model.phoneNumber}
+            onChange={this.props.handleChange}
+            name="phoneNumber"
+            type="number"
+            fullWidth
+            className={classes.textField}
+          />
+          <TextField
+            label="Correo"
+            value={model.email}
+            onChange={this.props.handleChange}
+            name="email"
+            type="email"
+            fullWidth
+            className={classes.textField}
+          />
+          <TextField
+            label="Facebook"
+            value={model.FacebookId}
+            onChange={this.props.handleChange}
+            name="FacebookId"
+            fullWidth
+            className={classes.textField}
+          />
+          <DatePicker
+            type="date"
+            label="Fecha de Nacimiento"
+            fullWidth
+            onChange={date => {
+              console.log(date);
+              const event = {
+                target: {
+                  name: "dob",
+                  value: date.format("YYYY-MM-DD")
+                }
+              };
+              this.props.handleChange(event);
+            }}
+            name="dob"
+            value={model.dob}
+          />
+          <TextField
+            select
+            label="Interes"
+            name="interest"
+            SelectProps={{
+              multiple: true
+            }}
+            fullWidth
+            value={model.interest}
+            className={classes.textField}
+            onChange={this.props.handleChange}
+          >
+            {INTEREST.map(item => (
+              <MenuItem key={item.value} value={item.value}>
+                {item.value}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <Button variant="contained" color="primary" fullWidth type='submit'>
+            Primary
+          </Button>
+        </Paper>
+      </form>
     );
   }
 }
