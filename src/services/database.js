@@ -4,6 +4,9 @@ import config from './config'
 firebase.initializeApp(config);
 
 const db = firebase.firestore();
+db.settings({
+    timestampsInSnapshots:true
+})
 
 const save = model =>{
     db.collection('users')
@@ -15,4 +18,16 @@ const save = model =>{
             console.log('<==== Error!')
         })
 }
-export default save
+const list=(callback)=>{
+    db.collection('users').onSnapshot(querySnapshot =>{
+        const list = []
+        querySnapshot.forEach(doc =>{
+            list.push(doc.data())
+        })
+        callback(list)
+    })
+}
+export{
+    save,
+    list
+}
